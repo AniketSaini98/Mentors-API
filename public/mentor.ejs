@@ -1,0 +1,101 @@
+<!--  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentor Details</title>
+</head>
+<body>
+    <h1>Mentor Details</h1>
+    <ul>
+        <% mentors.forEach(mentor => { %>
+            <li>
+                <h2><%= mentor.name %></h2>
+                <img src="<%= mentor.image_url %>" alt="<%= mentor.name %>">
+                <p>Rating: <%= mentor.rating %></p>
+                <p>Role: <%= mentor.role %></p>
+                <p>Course: <%= mentor.course %></p>
+                <p>Experience: <%= mentor.experience %> years</p>
+            </li>
+        <% }); %>
+    </ul>
+</body>
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentor Details</title>
+</head>
+<body>
+    <h1>Mentor Details</h1>
+    <div id="mentor-list"></div>
+
+    <script>
+        // Function to fetch mentor data from the API
+        async function fetchMentors() {
+            try {
+                const response = await fetch('/mentors');
+                const mentors = await response.json();
+                
+                // Display mentor data on the web page
+                const mentorList = document.getElementById('mentor-list');
+                mentors.forEach(mentor => {
+                    const mentorInfo = document.createElement('div');
+                    mentorInfo.innerHTML = `
+                        <h2>${mentor.name}</h2>
+                        <img src="${mentor.image_url}" alt="${mentor.name}">
+                        <p>Rating: ${mentor.rating}</p>
+                        <p>Role: ${mentor.role}</p>
+                        <p>Course: ${mentor.course}</p>
+                        <p>Experience: ${mentor.experience} years</p>
+                    `;
+                    mentorList.appendChild(mentorInfo);
+                });
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        // Fetch mentor data when the page loads
+        fetchMentors();
+    </script>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentors</title>
+</head>
+<body>
+    <h1>Mentors</h1>
+    <div id="mentorList"></div>
+
+    <script>
+        async function fetchMentors() {
+            const response = await fetch('/mentors');
+            const mentors = await response.json();
+
+            const mentorList = document.getElementById('mentorList');
+
+            mentors.forEach(mentor => {
+                const mentorDiv = document.createElement('div');
+                mentorDiv.innerHTML = `
+                    <h2>${mentor.name}</h2>
+                    <img src="data:image/jpeg;base64,${mentor.image}" alt="${mentor.name}"/>
+                `;
+                mentorList.appendChild(mentorDiv);
+            });
+        }
+
+        fetchMentors();
+    </script>
+</body>
+</html>
+
